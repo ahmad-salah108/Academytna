@@ -1,6 +1,3 @@
-import DashbaordContent from "../../components/teacher/DashbaordContent";
-import DashboardSidebar from "../../components/teacher/DashboardSidebar";
-import Navbar from "../../components/teacher/Navbar";
 import '../../assest/css/teacher/dashboardmain.css'
 import '../../assest/css/teacher/dashCalender.css'
 import CalenderBox from "../../components/teacher/CalenderBox";
@@ -29,30 +26,19 @@ export default function CalenderPage()
         }
     ]
     return(
-        <div className="dashboard">
-            <Navbar/>
-            <div className="dashboard-wrapper">
-                <div className="dashbaord-sidebar">
-                    <DashboardSidebar/>
-                </div>
-                <div className="dashbaord-content">
-                    <DashbaordContent/>
-                    <div className="dash-calender">
-                        <div className="calender-content">
-                            {
-                                info.map((box,index)=>
-                                {
-                                    return(
-                                        <CalenderBox box={box} key={index+'zmk1'}/>
-                                    )
-                                })
-                            }
-                        </div>
-                        <div className="calender-wrapper">
-                            <Calendar value={date} onChange={setDate}/>
-                        </div>
-                    </div>
-                </div>
+        <div className="dash-calender">
+            <div className="calender-content">
+                {
+                    info.map((box,index)=>
+                    {
+                        return(
+                            <CalenderBox box={box} key={index+'zmk1'}/>
+                        )
+                    })
+                }
+            </div>
+            <div className="calender-wrapper">
+                <Calendar value={date} onChange={setDate}/>
             </div>
         </div>
     )

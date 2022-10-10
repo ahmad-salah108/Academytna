@@ -37,7 +37,6 @@ import SingleCourseJoin from './pages/user/courses/SingleCourseJoin';
 import DashboardMain from './pages/teacher/DashboardMain';
 import FinancialSahrePage from './pages/teacher/FinancialSharePage';
 import CalenderPage from './pages/teacher/ClenderPage';
-import LandStudentDashboardPage from './pages/student/LandStudentDashboardPage';
 import FollowUpAttendance from './pages/student/FollowUpAttendance';
 import DetectionPointsStudent from './pages/student/DetectionPointsStudent';
 import GoldControlBoard from './pages/goldMemberShip/GoldControlBoard';
@@ -79,16 +78,17 @@ import VideoLessonsSearchFound from './pages/user/videoLessons/VideoLessonsSearc
 import VideoLessonsSearchNotFound from './pages/user/videoLessons/VideoLessonsSearchNotFound';
 import TeacherAttendance from './pages/teacher/TeacherAttendance';
 import SchoolSchedule from './pages/teacher/SchoolSchedule';
-
+import PageNotFound from './404'
+import BasicInformationBoxes from './components/student/BasicInformationBoxes';
+import StudentDashboard from './pages/student/StudentDashboard';
+import MainChartPage from './pages/parent/MainChartPage';
 
 
 function App() {
-  const location = useLocation();
-
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<UserpagesOutlet location={location}/>}>
+        <Route path='/' element={<UserpagesOutlet/>}>
           <Route index element={<Home/>}/>
           <Route path='groups' element={<Groups/>}/>
           <Route path='groups/search/notFound' element={<GroupsSearchNotFound/>}/>
@@ -120,29 +120,32 @@ function App() {
           {/* page for one multi choices question */}
           <Route path='exams/questions' element={<SingleQuestionChoices/>}/>
           <Route path='exams/:examType' element={<ShowCategorySubjectsExam/>}/>
-          {/* login and register routes */}
-          <Route path='register/teacher' element={<TeacherRegister/>}/>
-          <Route path='register/student' element={<StudentRegister/>}/>
-          <Route path='login/teacher' element={<TeacherLogin/>}/>
-          <Route path='login/student' element={<StudentLogin/>}/>
-          <Route path='forgot-password' element={<ForgotPassword/>}/>
-          <Route path='login/parent' element={<ParentLogin/>}/>
           <Route path='courses' element={<Courses/>}/>
           <Route path='courses/:courseType' element={<CoursesCategoryPage/>}/>
           <Route path='courses/:courseType/:courseId' element={<SingleCourse/>}/>
           {/*if the user are subscribed to the course*/}
           {/* <Route path='courses/:courseType/:courseId' element={<SingleCourseJoin/>}/> */} 
         </Route>
+        {/* login and register routes */}
+        <Route path='register/teacher' element={<TeacherRegister/>}/>
+        <Route path='register/student' element={<StudentRegister/>}/>
+        <Route path='login/teacher' element={<TeacherLogin/>}/>
+        <Route path='login/student' element={<StudentLogin/>}/>
+        <Route path='forgot-password' element={<ForgotPassword/>}/>
+        <Route path='login/parent' element={<ParentLogin/>}/>
         {/** teacher dashboard */}
-        <Route path="teacher" element={<DashboardMain/>}/>
-        <Route path='teacher/financial' element={<FinancialSahrePage/>}/>
-        <Route path='teacher/calender' element={<CalenderPage/>}/>
-        <Route path='teacher/schoolschedule' element={<SchoolSchedule/>}/>
-        <Route path='teacher/attendance' element={<TeacherAttendance/>}/>
+        <Route path="teacher" element={<DashboardMain/>}>
+          <Route path='financial' element={<FinancialSahrePage/>}/>
+          <Route path='calender' element={<CalenderPage/>}/>
+          <Route path='schoolschedule' element={<SchoolSchedule/>}/>
+          <Route path='attendance' element={<TeacherAttendance/>}/>
+        </Route>
         {/** student dashboard */}
-        <Route path='student' element={<LandStudentDashboardPage/>}/>
-        <Route path='student/followupattendance' element={<FollowUpAttendance/>}/>
-        <Route path='student/detectionpoints' element={<DetectionPointsStudent/>}/>
+        <Route path='student' element={<StudentDashboard/>}>
+          <Route index element={<BasicInformationBoxes/>}/>
+          <Route path='followupattendance' element={<FollowUpAttendance/>}/>
+          <Route path='detectionpoints' element={<DetectionPointsStudent/>}/>
+        </Route>
         
         {/** golden  student  dashboard*/}
         <Route path='goldStudent' element={<GoldControlBoard/>}/>
@@ -178,8 +181,12 @@ function App() {
         <Route path='goldStudent/honoraryboard/studentsHonorRoll' element={<StudentsHonorRoll/>}/>
         <Route path='goldStudent/honoraryboard/teachersHonorRoll' element={<TeachersHonorRoll/>}/>
 
-        <Route path='parent' element={<LandParentPage/>}/>
-        <Route path='parent/chart' element={<ChartPage/>}/>
+        <Route path='parent' element={<MainChartPage/>}>
+          <Route index element={<LandParentPage/>}/>
+          <Route path='chart' element={<ChartPage/>}/>
+        </Route>
+
+        <Route path='*' element={<PageNotFound/>}/>
       </Routes>
     </div>
   );

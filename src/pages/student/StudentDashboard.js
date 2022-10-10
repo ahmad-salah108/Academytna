@@ -2,9 +2,9 @@ import '../../assest/css/student/dashBoardStudent.css'
 import StudebtSidebarDashboard from "../../components/student/StudentSidebarDashboard";
 import StudentNavbar from "../../components/student/StudentNavbar";
 import TopMainInfo from "../../components/student/TopMainInfo";
-import BasicInformationBoxes from '../../components/student/BasicInformationBoxes';
+import {Outlet} from 'react-router-dom'
 
-export default function LandStudentDashboardPage()
+export default function StudentDashboard()
 {
     return(
         <div className="dashboard">
@@ -15,7 +15,7 @@ export default function LandStudentDashboardPage()
                 </div>
                 <div className="dashbaord-content">
                     <TopMainInfo/>
-                    <BasicInformationBoxes/>
+                    <Outlet/>
                 </div>
             </div>
         </div>

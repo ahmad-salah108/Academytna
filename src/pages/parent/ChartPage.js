@@ -1,7 +1,5 @@
 import {useEffect}  from 'react'
-import ParentNavbar from '../../components/parent/ParentNavbar'
 import '../../assest/css/parent/ChartPage.css'
-import ParenttopBoxes from '../../components/parent/ParentTopBoxes'
 import {
   Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
@@ -78,37 +76,31 @@ const optionsPart = {
     }
 }
   return (
-    <div className='land-parent'>
-        <ParentNavbar/>
-        <div className='parent-land-content'>
-          <ParenttopBoxes/>
+    <div className='chart-single container'>
+        <div className='chart-single-header'>
+            <div className='chart-single-average'>
+            <h3 className='chart-single-average-degree'>متوسط المعدل: <span>8/10</span></h3>
+            <h3 className='chart-single-rate'>ممتاز</h3>
+            </div>
+            <div className='chart-single-images'>
+            <img src={image1} alt="load"/>
+            <img src={image2} alt="load"/>
         </div>
-        <div className='chart-single container'>
-              <div className='chart-single-header'>
-                  <div className='chart-single-average'>
-                    <h3 className='chart-single-average-degree'>متوسط المعدل: <span>8/10</span></h3>
-                    <h3 className='chart-single-rate'>ممتاز</h3>
-                  </div>
-                  <div className='chart-single-images'>
-                    <img src={image1} alt="load"/>
-                    <img src={image2} alt="load"/>
-                </div>
-              </div>
-              <div className='chart-single-print'>
-                  <button><img src={image3} alt="load"/></button>
-              </div>
-              <div className='chart-single-text'>
-                  <div className='chart-single-text-wrapper'>
-                    <h3 className='chart-single-text-title'>مادة اللغة العربية  </h3>
-                    <img src={image4} className="chart-single-title-image" alt='load'/>
-                  </div>
-                  <h4 className='chart-single-text-summary'>هنا الطلع علي علامات ومستوي الطالب باللغة العربية </h4>
-              </div>
-              <div className='chart-single-mainchart'>
-                  <Bar datasets data={data} options={options} height="218px"/>
-              </div>
-              <h3 className='chart-single-title'>مادة اللغة العربية </h3>
         </div>
+        <div className='chart-single-print'>
+            <button><img src={image3} alt="load"/></button>
+        </div>
+        <div className='chart-single-text'>
+            <div className='chart-single-text-wrapper'>
+            <h3 className='chart-single-text-title'>مادة اللغة العربية  </h3>
+            <img src={image4} className="chart-single-title-image" alt='load'/>
+            </div>
+            <h4 className='chart-single-text-summary'>هنا الطلع علي علامات ومستوي الطالب باللغة العربية </h4>
+        </div>
+        <div className='chart-single-mainchart'>
+            <Bar datasets data={data} options={options} height="218px"/>
+        </div>
+        <h3 className='chart-single-title'>مادة اللغة العربية </h3>
     </div>
   )
 }

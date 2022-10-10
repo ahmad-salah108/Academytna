@@ -1,7 +1,5 @@
 import React from 'react'
-import ParentNavbar from '../../components/parent/ParentNavbar'
 import '../../assest/css/parent/landParentPage.css'
-import ParenttopBoxes from '../../components/parent/ParentTopBoxes'
 import {
   Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
@@ -72,44 +70,38 @@ const optionsPart = {
     }
 }
   return (
-    <div className='land-parent'>
-        <ParentNavbar/>
-        <div className='parent-land-content'>
-          <ParenttopBoxes/>
-        </div>
-        <div className='land-parent container'>
-              <div className='land-parent-header'>
-                  <div className='land-parent-average'>
-                    <h3 className='land-parent-average-degree'>متوسط المعدل: <span>8/10</span></h3>
-                    <h3 className='land-parent-rate'>ممتاز</h3>
-                  </div>
-                  <div className='land-parent-images'>
-                    <img src={image1} alt="load"/>
-                    <img src={image2} alt="load"/>
+      <div className='land-parent container'>
+            <div className='land-parent-header'>
+                <div className='land-parent-average'>
+                  <h3 className='land-parent-average-degree'>متوسط المعدل: <span>8/10</span></h3>
+                  <h3 className='land-parent-rate'>ممتاز</h3>
                 </div>
+                <div className='land-parent-images'>
+                  <img src={image1} alt="load"/>
+                  <img src={image2} alt="load"/>
               </div>
-              <div className='land-parent-print'>
-                  <button><img src={image3} alt="load"/></button>
-              </div>
-              <div className='land-parent-text'>
-                  <div className='land-parent-text-wrapper'>
-                    <h3 className='land-parent-text-title'>اهلا بك في اكاديمتنا  </h3>
-                    <img src={image4} className="land-parent-title-image" alt='load'/>
-                  </div>
-                  <h4 className='land-parent-text-summary'>يسعدنا تسهيل عملية متابعة دراسة ابنائك من خلال اكاديميتنا </h4>
-              </div>
-              <div className='land-parent-mainchart'>
-                  <Bar datasets data={data} options={options} height="218px"/>
-              </div>
-              <div className='land-parent-charts'>
-                <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
-                <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
-                <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
-                <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
-                <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
-                <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
-              </div>
-        </div>
-    </div>
+            </div>
+            <div className='land-parent-print'>
+                <button><img src={image3} alt="load"/></button>
+            </div>
+            <div className='land-parent-text'>
+                <div className='land-parent-text-wrapper'>
+                  <h3 className='land-parent-text-title'>اهلا بك في اكاديمتنا  </h3>
+                  <img src={image4} className="land-parent-title-image" alt='load'/>
+                </div>
+                <h4 className='land-parent-text-summary'>يسعدنا تسهيل عملية متابعة دراسة ابنائك من خلال اكاديميتنا </h4>
+            </div>
+            <div className='land-parent-mainchart'>
+                <Bar datasets data={data} options={options} height="218px"/>
+            </div>
+            <div className='land-parent-charts'>
+              <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
+              <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
+              <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
+              <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
+              <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
+              <Link to={'/parent/chart'} className="land-parent-chart-link"><GoldChart data={dataPart} options={optionsPart}/></Link>
+            </div>
+      </div>
   )
 }
