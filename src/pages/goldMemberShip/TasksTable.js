@@ -1,8 +1,4 @@
-import '../../assest/css/student/dashBoardStudent.css'
-import GoldenNavbar from '../../components/goldMemberShip/GoldenNavbar';
-import GoldenDashboard from '../../components/goldMemberShip/GoldenDashboard';
 import '../../assest/css/goldMemberShip/goldcontrolboard.css'
-import GoldTopMain from '../../components/goldMemberShip/GoldTopMain';
 import CalenderBox from '../../components/teacher/CalenderBox';
 import Calendar from 'react-calendar';
 import '../../assest/css/goldMemberShip/goldtaskstable.css'
@@ -36,49 +32,38 @@ export default function GoldTasksTable()
         }
     ]
     return(
-        <div className="dashboard">
-            <GoldenNavbar/>
-            <div className="dashboard-wrapper">
-                <div className="dashbaord-sidebar">
-                    <GoldenDashboard/>
-                </div>
-                <div className="dashbaord-content">
-                    <GoldTopMain/>
-                    <div className='dash-taks-table'>
-                        <div className="calender-content">
-                                {
-                                    info.map((box,index)=>
-                                    {
-                                        return(
-                                            <CalenderBox box={box} key={index+'zmk1'}/>
-                                        )
-                                    })
-                                }
-                        </div>
-                        <div className='dash-taks-table-details'>
-                            <div className='dash-taks-table-form'>
-                                <div className='dash-taks-table-box'>
-                                    <label className='dash-taks-label'>المذكرة</label>
-                                    <textarea></textarea>
-                                </div>
-                                <div className='dash-taks-table-box'>
-                                    <label className='dash-taks-label'>الساعة </label>
-                                    <input type="time"/>
-                                </div>
-                                <div className='dash-taks-table-box'>
-                                    <label className='dash-taks-label'>التاريخ</label>
-                                    <input type="date"/>
-                                </div>
-                            </div>
-                            <div className='calender-wrapper'>
-                                <Calendar value={date} onChange={setDate}/>
-                            </div>
-                        </div>
-                        <div className='dash-taks-table-add'>
-                                <button>اضافة </button>
-                        </div>
+        <div className='dash-taks-table'>
+            <div className="calender-content">
+                    {
+                        info.map((box,index)=>
+                        {
+                            return(
+                                <CalenderBox box={box} key={index+'zmk1'}/>
+                            )
+                        })
+                    }
+            </div>
+            <div className='dash-taks-table-details'>
+                <div className='dash-taks-table-form'>
+                    <div className='dash-taks-table-box'>
+                        <label className='dash-taks-label'>المذكرة</label>
+                        <textarea></textarea>
+                    </div>
+                    <div className='dash-taks-table-box'>
+                        <label className='dash-taks-label'>الساعة </label>
+                        <input type="time"/>
+                    </div>
+                    <div className='dash-taks-table-box'>
+                        <label className='dash-taks-label'>التاريخ</label>
+                        <input type="date"/>
                     </div>
                 </div>
+                <div className='calender-wrapper'>
+                    <Calendar value={date} onChange={setDate}/>
+                </div>
+            </div>
+            <div className='dash-taks-table-add'>
+                    <button>اضافة </button>
             </div>
         </div>
     )

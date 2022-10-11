@@ -1,7 +1,3 @@
-import '../../assest/css/student/dashBoardStudent.css'
-import GoldenNavbar from '../../components/goldMemberShip/GoldenNavbar';
-import GoldenDashboard from '../../components/goldMemberShip/GoldenDashboard';
-import GoldTopMain from '../../components/goldMemberShip/GoldTopMain';
 import { useEffect } from 'react';
 import '../../assest/css/goldMemberShip/goldAchievements.css'
 import image1 from '../../images/goldStudent/Group 3605.png'
@@ -79,38 +75,27 @@ export default function GoldAchievements()
     }
 
     return(
-        <div className="dashboard">
-            <GoldenNavbar/>
-            <div className="dashboard-wrapper">
-                <div className="dashbaord-sidebar">
-                    <GoldenDashboard/>
+        <div className='gold-achievements container'>
+            <div className='gold-achievements-header'>
+                <div className='gold-achievements-average'>
+                    <h3 className='gold-achievements-average-degree'>متوسط المعدل: <span>8/10</span></h3>
+                    <h3 className='gold-achievements-rate'>ممتاز</h3>
                 </div>
-                <div className="dashbaord-content">
-                    <GoldTopMain/>
-                    <div className='gold-achievements container'>
-                        <div className='gold-achievements-header'>
-                            <div className='gold-achievements-average'>
-                                <h3 className='gold-achievements-average-degree'>متوسط المعدل: <span>8/10</span></h3>
-                                <h3 className='gold-achievements-rate'>ممتاز</h3>
-                            </div>
-                            <div className='gold-achievements-images'>
-                                <img src={image1} alt="load"/>
-                                <img src={image2} alt="load"/>
-                            </div>
-                        </div>
-                        <div className='gold-achievements-mainchart'>
-                            <Bar datasets data={data} options={options} height="219px"/>
-                        </div>
-                        <div className='gold-achievements-charts'>
-                            <GoldChart data={dataPart} options={optionsPart}/>
-                            <GoldChart data={dataPart} options={optionsPart}/>
-                            <GoldChart data={dataPart} options={optionsPart}/>
-                            <GoldChart data={dataPart} options={optionsPart}/>
-                            <GoldChart data={dataPart} options={optionsPart}/>
-                            <GoldChart data={dataPart} options={optionsPart}/>
-                        </div>
-                    </div>
+                <div className='gold-achievements-images'>
+                    <img src={image1} alt="load"/>
+                    <img src={image2} alt="load"/>
                 </div>
+            </div>
+            <div className='gold-achievements-mainchart'>
+                <Bar datasets data={data} options={options} height="219px"/>
+            </div>
+            <div className='gold-achievements-charts'>
+                <GoldChart data={dataPart} options={optionsPart}/>
+                <GoldChart data={dataPart} options={optionsPart}/>
+                <GoldChart data={dataPart} options={optionsPart}/>
+                <GoldChart data={dataPart} options={optionsPart}/>
+                <GoldChart data={dataPart} options={optionsPart}/>
+                <GoldChart data={dataPart} options={optionsPart}/>
             </div>
         </div>
     )

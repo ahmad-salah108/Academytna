@@ -82,6 +82,8 @@ import PageNotFound from './404'
 import BasicInformationBoxes from './components/student/BasicInformationBoxes';
 import StudentDashboard from './pages/student/StudentDashboard';
 import MainChartPage from './pages/parent/MainChartPage';
+import MainGoldPage from './pages/goldMemberShip/MainGoldPage';
+import Settings from './pages/goldMemberShip/Settings';
 
 
 function App() {
@@ -126,6 +128,7 @@ function App() {
           {/*if the user are subscribed to the course*/}
           {/* <Route path='courses/:courseType/:courseId' element={<SingleCourseJoin/>}/> */} 
         </Route>
+
         {/* login and register routes */}
         <Route path='register/teacher' element={<TeacherRegister/>}/>
         <Route path='register/student' element={<StudentRegister/>}/>
@@ -133,57 +136,68 @@ function App() {
         <Route path='login/student' element={<StudentLogin/>}/>
         <Route path='forgot-password' element={<ForgotPassword/>}/>
         <Route path='login/parent' element={<ParentLogin/>}/>
+
         {/** teacher dashboard */}
         <Route path="teacher" element={<DashboardMain/>}>
           <Route path='financial' element={<FinancialSahrePage/>}/>
           <Route path='calender' element={<CalenderPage/>}/>
           <Route path='schoolschedule' element={<SchoolSchedule/>}/>
           <Route path='attendance' element={<TeacherAttendance/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
         </Route>
+
         {/** student dashboard */}
         <Route path='student' element={<StudentDashboard/>}>
           <Route index element={<BasicInformationBoxes/>}/>
           <Route path='followupattendance' element={<FollowUpAttendance/>}/>
           <Route path='detectionpoints' element={<DetectionPointsStudent/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
         </Route>
         
         {/** golden  student  dashboard*/}
-        <Route path='goldStudent' element={<GoldControlBoard/>}/>
-        <Route path='goldStudent/myCourses' element={<MyCourses/>}/>
-        <Route path='goldStudent/myCourses/notFound' element={<MyCoursesNotFound/>}/>
-        <Route path='goldStudent/myVideoLessons' element={<MyVideoLessons/>}/>
-        <Route path='goldStudent/myVideoLessons/notFound' element={<MyVideoLessonsNotFound/>}/>
-        <Route path='goldStudent/mySessions' element={<MySessions/>}/>
-        <Route path='goldStudent/myGroups' element={<MyGroups/>}/>
-        <Route path='goldStudent/myGroups/notFound' element={<MyCoursesNotFound/>}/>
-        <Route path='goldStudent/mySessions/notFound' element={<MySessionsNotFound/>}/>
-        <Route path='goldStudent/myForums' element={<MyForums/>}/>
-        <Route path='goldStudent/myForums/notFound' element={<MyForumsNotFound/>}/>
-        <Route path='goldStudent/myFavorites' element={<MyFavorites/>}/>
-        <Route path='goldStudent/myFavorites/notFound' element={<MyFavoritesNotFound/>}/>
-        <Route path='goldStudent/myExams' element={<MyExams/>}/>
-        <Route path='goldStudent/myExams/:examId' element={<MySingleExam/>}/>
-        <Route path='goldStudent/setting/account' element={<AccountSetting/>}/>
-        <Route path='goldStudent/setting/password' element={<PasswordSetting/>}/>
-        <Route path='goldStudent/technicalsupport' element={<TechnicalSupport/>}/>
-        <Route path='goldStudent/oneMessage' element={<OneConversation/>}/>
-        <Route path='goldStudent/groupMessage' element={<GroupConversation/>}/>
+        <Route path='goldStudent' element={<MainGoldPage/>}>
+          <Route index element={<GoldControlBoard/>}/>
+          <Route path='myCourses' element={<MyCourses/>}/>
+          <Route path='myCourses/notFound' element={<MyCoursesNotFound/>}/>
+          <Route path='myVideoLessons' element={<MyVideoLessons/>}/>
+          <Route path='myVideoLessons/notFound' element={<MyVideoLessonsNotFound/>}/>
+          <Route path='mySessions' element={<MySessions/>}/>
+          <Route path='myGroups' element={<MyGroups/>}/>
+          <Route path='myGroups/notFound' element={<MyCoursesNotFound/>}/>
+          <Route path='mySessions/notFound' element={<MySessionsNotFound/>}/>
+          <Route path='myForums' element={<MyForums/>}/>
+          <Route path='myForums/notFound' element={<MyForumsNotFound/>}/>
+          <Route path='myFavorites' element={<MyFavorites/>}/>
+          <Route path='myFavorites/notFound' element={<MyFavoritesNotFound/>}/>
+          <Route path='myExams' element={<MyExams/>}/>
+          <Route path='myExams/:examId' element={<MySingleExam/>}/>
+          <Route path='technicalsupport' element={<TechnicalSupport/>}/>
+          <Route path='oneMessage' element={<OneConversation/>}/>
+          <Route path='groupMessage' element={<GroupConversation/>}/>
+          <Route path='technicalsupport/requsetTicket' element={<RequestTicket/>}/>
+          <Route path='technicalsupport/previousTickets' element={<PreviousTickets/>}/>
+          <Route path='technicalsupport/emptypreviousTickets' element={<EmptyPreviousTickets/>}/>
+          <Route path='tasksTable' element={<GoldTasksTable/>}/>
+          <Route path='myForums/:fromType/:froumId' element={<GoldSingleForum/>}/>
+          <Route path='notification' element={<NotificationPage/>}/>
+          <Route path='achievements' element={<GoldAchievements/>}/>
+          <Route path='honoraryboard' element={<HonoraryBoard/>}/>
+          <Route path='honoraryboard/studentsHonorRoll' element={<StudentsHonorRoll/>}/>
+          <Route path='honoraryboard/teachersHonorRoll' element={<TeachersHonorRoll/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
+        </Route>
 
-        <Route path='goldStudent/technicalsupport/requsetTicket' element={<RequestTicket/>}/>
-        <Route path='goldStudent/technicalsupport/previousTickets' element={<PreviousTickets/>}/>
-        <Route path='goldStudent/technicalsupport/emptypreviousTickets' element={<EmptyPreviousTickets/>}/>
-        <Route path='goldStudent/tasksTable' element={<GoldTasksTable/>}/>
-        <Route path='goldStudent/myForums/:fromType/:froumId' element={<GoldSingleForum/>}/>
-        <Route path='goldStudent/notification' element={<NotificationPage/>}/>
-
-        <Route path='goldStudent/achievements' element={<GoldAchievements/>}/>
-        <Route path='goldStudent/honoraryboard' element={<HonoraryBoard/>}/>
-        <Route path='goldStudent/honoraryboard/studentsHonorRoll' element={<StudentsHonorRoll/>}/>
-        <Route path='goldStudent/honoraryboard/teachersHonorRoll' element={<TeachersHonorRoll/>}/>
+        <Route path='goldStudent/setting' element={<Settings/>}>
+          <Route index element={<AccountSetting/>}/>
+          <Route path='account' element={<AccountSetting/>}/>
+          <Route path='password' element={<PasswordSetting/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
+        </Route>
 
         <Route path='parent' element={<MainChartPage/>}>
           <Route index element={<LandParentPage/>}/>
           <Route path='chart' element={<ChartPage/>}/>
+          <Route path='*' element={<PageNotFound/>}/>
         </Route>
 
         <Route path='*' element={<PageNotFound/>}/>
