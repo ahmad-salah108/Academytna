@@ -73,7 +73,7 @@ export default function CoursesCategoryPage() {
             <h3 className="title">الدورات </h3>
             <div>
                 {
-                    categories.length>0?categories.filter(e => e.type == courseType).map((box,index)=>
+                    categories.length > 0 && categories.filter(e => e.type == courseType)[0].groups.length > 0 ? categories.filter(e => e.type == courseType).map((box,index)=>
                     {
                         return<div key={index+'m1'} className="box">
                             <h3 className="box-title">{box.title}</h3>
@@ -86,7 +86,7 @@ export default function CoursesCategoryPage() {
                                 }
                             </div>
                         </div>
-                    }):isNotFound&&<EmptyCategory type='/courses'/>
+                    }):<EmptyCategory type='/courses'/>
                 }
             </div>
         </div>
