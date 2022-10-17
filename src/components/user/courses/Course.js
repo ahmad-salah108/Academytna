@@ -7,17 +7,17 @@ export default function Course({course, type})
     return(
         <motion.div className='course'
         initial={{opacity:0, y:"-10px"}} animate={{opacity:1, y:"0px",transition:{duration:0.4}}}>
-            <Link to={type ? `/courses/${type}/${course.id}` : '#'} ><img src={course.img} alt="load" className='image'/></Link>
+            <Link to={type ? `/courses/${type}/${course.id}` : '#'} ><img src={`https://pall.pal-lady.com/InfixLMS%20v5.0.0/${course.thumbnail}`} alt="load" className='image'/></Link>
             <div className='course-content'>
                 <Link to={type ? `/courses/${type}/${course.id}` : '#'} >
                     <div className='course-header'>
-                        <h3 className='course-title'>{course.title}</h3>
+                        <h3 className='course-title'>{course.title.ar}</h3>
                         <div className='course-price'>
                             <BsCoin className='courser-icon'/>
                             <span>{course.price} د.ج</span>
                         </div>
                     </div>
-                    <h3 className='course-teacher'>الأستاذ/ {course.teacher}</h3>
+                    <h3 className='course-teacher'>الأستاذ/ {course.user.name}</h3>
                 </Link>
                 <div className='course-footer'>
                     <Link to={'#'} className='link'>اشترك</Link>

@@ -5,16 +5,16 @@ export default function CourseBox({course})
 {
     return(
         <div className='course-box'>
-            <img src={course.img} alt="load.." className='image'/>
+            <img src={`https://pall.pal-lady.com/InfixLMS%20v5.0.0/${course.thumbnail}`} alt="load.." className='image'/>
             <h3 className='course-box-title'>
-                {course.title}
+                {course.title.ar}
             </h3>
             <h3 className='course-teacher'>
-                الاستاذ {course.teacher}
+                الاستاذ {course.user.name}
             </h3>
             <div className='course-box-info'>
                 <div className='course-box-time'>
-                    المدة : 30 د
+                    المدة : {course.duration} د
                 </div>
                 <div className='course-box-price'>
                     سعر : {course.price} دج
