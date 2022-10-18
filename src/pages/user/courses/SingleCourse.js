@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 import AccordinCourse from "../../../components/user/courses/AccordainCourse";
 import CourseBox from "../../../components/user/courses/CourseBox";
 import axios from "axios";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function SingleCourse() {
   const { courseId, courseType } = useParams();
   const [course, setCourse] = useState({});
-  const [goals, setGoals] = useState('');
+  const [goals, setGoals] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo({
@@ -42,12 +44,17 @@ export default function SingleCourse() {
             info: response.data.data,
           },
         ]);
-        var strippedHtml = response.data.data.requirements.ar.replace(/<[^>]+>/g, '');
-        var result = strippedHtml.replace(/&nbsp;/g, ' ');
+        var strippedHtml = response.data.data.requirements.ar.replace(
+          /<[^>]+>/g,
+          ""
+        );
+        var result = strippedHtml.replace(/&nbsp;/g, " ");
         setGoals(result);
         setTimeout(() => {
-          document.querySelector('.singleCourse-desc').innerHTML = response.data.data.about.ar;
+          document.querySelector(".singleCourse-desc").innerHTML =
+            response.data.data.about.ar;
         }, 0);
+        setIsLoading(false);
       })
       .catch(function (error) {
         // handle error
@@ -57,7 +64,21 @@ export default function SingleCourse() {
 
   return (
     <div className="container singleCourse">
-      {course.length > 0 &&
+      {isLoading ? (
+        <ClipLoader
+          color={"#99DAE9"}
+          loading={isLoading}
+          cssOverride={{
+            display: "block",
+            borderWidth: "10px",
+            margin: '50vh auto'
+          }}
+          size={100}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : (
+        course.length > 0 &&
         course.map((e) => {
           return (
             <div key={e.info.id}>
@@ -68,33 +89,43 @@ export default function SingleCourse() {
                   <div className="goals">
                     <h3 className="goals-title">اهداف الدوره </h3>
                     <div className="goals-parts">
-                      {goals.split('،').map((box, index) => {
-                    return (
-                      <div className="goal" key={index + "z1"}>
-                        <HiBadgeCheck className="goal-icon" />
-                        <h3 className="goal-title">{box}</h3>
-                      </div>
-                    );
-                  })}
+                      {goals.split("،").map((box, index) => {
+                        return (
+                          <div className="goal" key={index + "z1"}>
+                            <HiBadgeCheck className="goal-icon" />
+                            <h3 className="goal-title">{box}</h3>
+                          </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="study">
                     <h3 className="study-title">منهاج الدراسه </h3>
                     <div>
                       {e.info.chapters?.map((box, index) => {
-                        return <AccordinCourse chapter={box} chapterId={box.id} lessons={e.info.lessons} key={index + "k1m"} />;
+                        return (
+                          <AccordinCourse
+                            chapter={box}
+                            chapterId={box.id}
+                            lessons={e.info.lessons}
+                            key={index + "k1m"}
+                          />
+                        );
                       })}
                     </div>
                   </div>
                 </div>
-                <div><CourseBox course={e.info} /></div>
+                <div>
+                  <CourseBox course={e.info} />
+                </div>
               </div>
               <div className="singlCourse-link">
                 <Link className="link">اشتراك</Link>
               </div>
             </div>
           );
-        })}
+        })
+      )}
     </div>
   );
 }

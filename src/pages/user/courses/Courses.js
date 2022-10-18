@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import Course from "../../../components/user/courses/Course";
 import axios from "axios";
 import CoursesCategoryBar from "../../../components/user/courses/CoursesCategoryBar";
+import ClipLoader from "react-spinners/ClipLoader";
 
 export default function Courses() {
-  const [data, setData] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     window.scrollTo({
       behavior: "smooth",
       top: 0,
     });
-    // const axios = require('axios').default;
+
     axios
       .get("https://pall.pal-lady.com/InfixLMS%20v5.0.0/api/get-all-courses")
       .then(function (response) {
         // handle success
-        setData(response.data.data);
         setCategories([
           {
             type: "arabic",
@@ -51,6 +51,7 @@ export default function Courses() {
             groups: response.data.data.filter((e) => e.category_id == 6),
           },
         ]);
+        setIsLoading(false);
       })
       .catch(function (error) {
         // handle error
@@ -67,7 +68,22 @@ export default function Courses() {
         <div className="courses-content">
           <h3 className="courses-title">الدورات</h3>
           <div>
-            {categories.length > 0 &&
+            {isLoading ? (
+              <ClipLoader
+                color={'#99DAE9'}
+                loading={isLoading}
+                cssOverride={{
+                  display: 'block',
+                  marginTop: '100px',
+                  marginInline: 'auto',
+                  borderWidth: '10px',
+                }}
+                size={100}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+              />
+            ) : (
+              categories.length > 0 &&
               categories.map((box, index) => {
                 return (
                   <div key={index + "m1"} className="box">
@@ -78,13 +94,18 @@ export default function Courses() {
                     <div className="boxes-wrapper">
                       {box.groups.slice(0, 3).map((course) => {
                         return (
-                          <Course key={course.id} course={course} type={box.type} />
+                          <Course
+                            key={course.id}
+                            course={course}
+                            type={box.type}
+                          />
                         );
                       })}
                     </div>
                   </div>
                 );
-              })}
+              })
+            )}
           </div>
         </div>
       </div>
