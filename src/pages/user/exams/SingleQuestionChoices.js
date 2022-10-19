@@ -10,7 +10,9 @@ function Items({ currentItems }) {
         currentItems.map((item) => (
           <div key={item.id} className="question-box">
             <h5 className="question-title">
-              {item.question_bank.question}
+            {
+                item.question_bank.question.replace(/<[^>]+>/g,"").replace(/&nbsp;/g, " ")
+            }
             </h5>
             {item.question_bank.question_mu && item.question_bank.question_mu.map(ans => (
                 <div key={ans.id} className="answers-box">
