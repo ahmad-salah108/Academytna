@@ -21,7 +21,7 @@ import PlayerLessonPage from './pages/user/videoLessons/PlayerLessonPage';
 import LessonUrlPage from './pages/user/videoLessons/LessonUrlPage';
 import ShowSubjectsExam from './pages/user/exams/ShowSubjectsExam';
 import ShowCategorySubjectsExam from './pages/user/exams/ShowCategorySubjectsExam';
-import MultiQuestionsInPage from './pages/user/exams/MultiQuestionsInPage';
+import Questions from './pages/user/exams/Questions';
 import SingleQuestionTrueOrrFalse from './pages/user/exams/SingleQuestionTrueOrFalse';
 import SingleQuestionChoices from './pages/user/exams/SingleQuestionChoices';
 import TeacherRegister from './pages/auth/TeacherRegister';
@@ -116,11 +116,11 @@ function App() {
           <Route path='videoLessons/:lessonType/:lessonId' element={<ViewVideoLessonSingle/>}/>
           <Route path='exams' element={<ShowSubjectsExam/>}/>
           {/* page for multi question in the same oage */}
-          {/* <Route path='exams/questions' element={<MultiQuestionsInPage/>}/> */}
+          <Route path='exams/:examType/:examId' element={<Questions/>}/>
           {/* page for one true or false question */}
           {/* <Route path='exams/questions' element={<SingleQuestionTrueOrrFalse/>}/> */}
           {/* page for one multi choices question */}
-          <Route path='exams/questions' element={<SingleQuestionChoices/>}/>
+          {/* <Route path='exams/questions' element={<SingleQuestionChoices/>}/> */}
           <Route path='exams/:examType' element={<ShowCategorySubjectsExam/>}/>
           <Route path='courses' element={<Courses/>}/>
           <Route path='courses/:courseType' element={<CoursesCategoryPage/>}/>

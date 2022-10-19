@@ -84,7 +84,7 @@ export default function Courses() {
               />
             ) : (
               categories.length > 0 &&
-              categories.map((box, index) => {
+              categories.filter(e => e.groups.length > 0).map((box, index) => {
                 return (
                   <div key={index + "m1"} className="box">
                     <h3 className="box-title">{box.title}</h3>
