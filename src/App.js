@@ -116,12 +116,12 @@ function App() {
           <Route path='videoLessons/:lessonType/:lessonId' element={<ViewVideoLessonSingle/>}/>
           <Route path='exams' element={<ShowSubjectsExam/>}/>
           {/* page for multi question in the same oage */}
-          <Route path='exams/:examType/:examId' element={<Questions/>}/>
           {/* page for one true or false question */}
           {/* <Route path='exams/questions' element={<SingleQuestionTrueOrrFalse/>}/> */}
           {/* page for one multi choices question */}
           {/* <Route path='exams/questions' element={<SingleQuestionChoices/>}/> */}
           <Route path='exams/:examType' element={<ShowCategorySubjectsExam/>}/>
+          <Route path='exams/:examType/:examId' element={<Questions/>}/>
           <Route path='courses' element={<Courses/>}/>
           <Route path='courses/:courseType' element={<CoursesCategoryPage/>}/>
           <Route path='courses/:courseType/:courseId' element={<SingleCourse/>}/>

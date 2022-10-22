@@ -94,7 +94,7 @@ export default function ShowCategorySubjectsExam() {
                       {box.groups.map((group, index) => {
                         return (
                           <Link
-                            to={`/exams/questions`}
+                            to={`/exams/${box.type.toLowerCase()}/${group.id}`}
                             className="link-quesions"
                             key={index + "z1"}
                           >

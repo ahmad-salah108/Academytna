@@ -47,55 +47,6 @@ export default function MultiQuestionsInPage()
                     /> :(quiz.length > 0 && quiz.map(q => 
                        <SingleQuestionChoices key={q.id} itemsPerPage={1} questions={q.quiz.assign}/>
                     ))}
-                    {/* <div>
-                        <h4 className="exam-name">اختبار الوحده الاولى مادة الرياضيات </h4>
-                        <form className="questions-wrapper">
-                            <div className="question-box">
-                                <h5 className="question-title">1- هنا سؤال تجريبي يكون اختيار او صح وخطا  </h5>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                            </div>
-                            <div className="question-box">
-                                <h5 className="question-title">1- هنا سؤال تجريبي يكون اختيار او صح وخطا  </h5>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                                <div className="answers-box">
-                                    <input type={"radio"}/>
-                                    <label className="answer-title">هنا خيار  </label>
-                                </div>
-                            </div>
-                            <button className="btn-next-question-page">التالي </button>
-                        </form>
-                        <div className="page-pagination">
-                                <Link to={"#"} className="pagination-link active">1</Link>
-                                <Link to={"#"} className="pagination-link ">2</Link>
-                                <Link to={"#"} className="pagination-link ">3</Link>
-                            </div>
-                    </div> */}
                 </div>
             </div>
         </div>
