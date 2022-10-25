@@ -17,7 +17,7 @@ export default function CoursesCategoryPage() {
       behavior: "smooth",
       top: 0,
     });
-    // const axios = require('axios').default;
+    
     axios
       .get("https://pall.pal-lady.com/InfixLMS%20v5.0.0/api/get-all-courses")
       .then(function (response) {

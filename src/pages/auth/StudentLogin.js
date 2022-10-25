@@ -1,17 +1,39 @@
-import {useEffect} from 'react'
-import { Link } from 'react-router-dom'
+import {useEffect, useRef} from 'react'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import google from '../../images/Group.png'
 import facebook from '../../images/فيس  2.png'
+import axios from 'axios';
 
 export default function StudentLogin() {
+  const email = useRef();
+  const password = useRef();
+  const navigate = useNavigate();
+  const authError = useRef();
 
-    useEffect(()=>{
-        window.scrollTo({
-          behavior:"smooth",
-          top:0
-        })
-      },[])
-    
+  useEffect(()=>{
+      window.scrollTo({
+        behavior:"smooth",
+        top:0
+      })
+    },[])
+  
+    const handleAuth = (e)=>{
+      e.preventDefault();
+      axios.post('https://pall.pal-lady.com/InfixLMS%20v5.0.0/api/login', null,{
+        params: {
+          email: email.current.value,
+          password: password.current.value,
+        },
+      }).then(response => {
+        if(response.status == 200){
+          navigate('/')
+        }else{
+          console.log('auth error')
+        }
+      }).catch(err => {
+        authError.current.textContent = 'خطأ في بيانات التسجيل'
+      });
+    };
 
   return (
     <div className='student-login container'>
@@ -37,16 +59,17 @@ export default function StudentLogin() {
               <form className='register-form'>
                 <div className='form-input-wrapper'>
                   <label className='input-title'>البريد الاكتروني</label>
-                  <input type={"email"} className="input"/>
+                  <input ref={email} type={"email"} className="input"/>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> كلمة المرور   </label>
-                  <input type={'password'} className="input"/>
+                  <input ref={password} type={'password'} className="input"/>
                 </div>
                 <Link className='forgot-password-link' to={"/forgot-password"}>
                 هل نسيت كلمة المرور
                 </Link>
-                <button className='register-btn'> تسجيل الدخول  </button>
+                <button onClick={handleAuth} className='register-btn'> تسجيل الدخول  </button>
+                <h2 style={{color: 'red'}} ref={authError}></h2>
               </form>
           </div>
         </div>

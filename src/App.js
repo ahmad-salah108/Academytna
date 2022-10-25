@@ -96,9 +96,9 @@ function App() {
           <Route path='groups/search/notFound' element={<GroupsSearchNotFound/>}/>
           <Route path='groups/search' element={<GroupsSearchFound/>}/>
           <Route path='groups/:groupType' element={<GroupsCategory/>}/>
+          <Route path='groups/:groupType/:groupId' element={<SingleGropup/>}/>
           <Route path="forums" element={<Forums/>}/>
           <Route path='forums/:forumType' element={<ForumsCategoryPage/>}/>
-          <Route path='groups/:groupType/:groupId' element={<SingleGropup/>}/>
           <Route path='forums/:forumType/:forumId' element={<SingleForum/>}/>
           <Route path='psychologist' element={<Physchologist/>}/>
           <Route path='psychologist/sessions' element={<PsychologistSessions/>}/>
