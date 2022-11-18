@@ -4,9 +4,7 @@ import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
 
 export default function StudentRegister() {
-  const {register, handleSubmit, formState: {errors}} = useForm();
-  const password = useRef(null);
-  const {ref, ...rest} = register('password', {required: 'كلمة المرور مطلوبة'});
+  const {register, handleSubmit, formState: {errors}, watch} = useForm();
 
   const onSubmit = (data)=>{
     console.log(data)
@@ -42,14 +40,14 @@ export default function StudentRegister() {
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> كلمة المرور   </label>
-                  <input type={'password'} ref={e => {ref(e); password.current = e;}} {...rest}  className="input"/>
+                  <input type={'password'} {...register('password', {required: 'كلمة المرور مطلوبة'})}  className="input"/>
                   <span style={{color: 'red'}}>{errors.password?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> تاكيد كلمة المرور  </label>
                   <input type={'password'} {...register('confirmPass', {
                     required: 'تاكيد كلمة المرور مطلوب',
-                    validate: v => v==password.current.value ? true : 'كلمة المرور غير مطابقة'
+                    validate: v => v==watch('password') ? true : 'كلمة المرور غير مطابقة'
                     })} className="input"/>
                   <span style={{color: 'red'}}>{errors.confirmPass?.message}</span>
                 </div>
