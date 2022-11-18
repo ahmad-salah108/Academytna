@@ -1,12 +1,17 @@
-import {useEffect} from 'react'
+import {useEffect, useRef} from 'react'
 import '../../assest/css/auth/teacherRegister.css'
 import { Link } from 'react-router-dom'
-import google from '../../images/Group.png'
-import facebook from '../../images/فيس  2.png'
-import {IoIosAttach} from 'react-icons/io'
+import { useForm } from 'react-hook-form'
 
 export default function TeacherRegister() {
+  const {register, handleSubmit, formState: {errors}} = useForm();
+  const password = useRef(null);
+  const {ref, ...rest} = register('password', {required: 'كلمة المرور مطلوبة'});
 
+  const onSubmit = (data)=>{
+    console.log(data)
+  }
+  
   useEffect(()=>{
     window.scrollTo({
       behavior:"smooth",
@@ -24,58 +29,49 @@ export default function TeacherRegister() {
                 <Link to={"/register/teacher"} className="active">تسجيل كمعلم </Link>
             </div>
            <div className='register-process-wrapper'>
-              <div className='register-through'>
-                <button className='register-way-box'>
-                  <img src={google} alt="" className='image-way'/>
-                  <span className='name-way'>عن طريق جوجل </span>
-                </button>
-                <span className='or'>او</span>
-                <button className='register-way-box'>
-                  <img src={facebook} alt=""  className='image-way'/>
-                  <span className='name-way'>عن طريق الفيس </span>
-                </button>
-              </div>
-              <form className='register-form'>
+              <form onSubmit={handleSubmit(onSubmit)} className='register-form'>
                 <div className='form-input-wrapper'>
                   <label className='input-title'>البريد الاكتروني</label>
-                  <input type={"email"} className="input"/>
+                  <input type={"email"} {...register('email', {required: 'البريد الالكتروني مطلوب'})} className="input"/>
+                  <span style={{color: 'red'}}>{errors.email?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
-                  <label className='input-title'>الاسم واللقب</label>
-                  <input type={"email"} className="input"/>
+                  <label className='input-title'>الاسم</label>
+                  <input {...register('name', {required: 'الاسم مطلوب'})} className="input"/>
+                  <span style={{color: 'red'}}>{errors.name?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'>رقم الجوال  </label>
-                  <input type={'tel'} className="input"/>
+                  <input {...register('mobileNum', {required: 'رقم الجوال مطلوب'})} className="input"/>
+                  <span style={{color: 'red'}}>{errors.mobileNum?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> كلمة المرور   </label>
-                  <input type={'password'} className="input"/>
+                  <input type={'password'} ref={e => {ref(e); password.current = e;}} {...rest}  className="input"/>
+                  <span style={{color: 'red'}}>{errors.password?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> تاكيد كلمة المرور  </label>
-                  <input type={'password'} className="input"/>
+                  <input type={'password'} {...register('confirmPass', {
+                    required: 'تاكيد كلمة المرور مطلوب',
+                    validate: v => v==password.current.value ? true : 'كلمة المرور غير مطابقة'
+                    })} className="input"/>
+                  <span style={{color: 'red'}}>{errors.confirmPass?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label  className='input-title'>الجنس</label>
-                  <select className="input select">
+                  <select {...register('gender')} className="input select">
                     <optgroup label='اختيار الجنس' className='descripe-select'>
                       <option className='option'>ذكر</option>
                       <option className='option'>انثى</option>
                     </optgroup>
                   </select>
                 </div>
-                <div className='form-input-wrapper'>
-                  <label className='input-title'>   ارفاق السيرة الذاتية (CV)  </label>
-                  <div>
-                    <label htmlFor='file' className='label-chooseFile'><IoIosAttach/></label>
-                    <input type={'file'} className="input file" id='file'/>
-                  </div>
-                </div>
                 <div className='policy-wrapper'>
-                  <input type={"checkbox"} className="input-radio" id='policy-input'/>
-                  <label for='policy-input' className='policy-label'>بالضغط على التسجيل أنا أوافق على شروط الخدمة و سياسة الخصوصية  </label>
+                  <input type={"checkbox"} {...register('policy', {required: 'يجب الموافقة على شروط الخدمة وسياسة الخصوصية'})} className="input-radio" id='policy-input'/>
+                  <label htmlFor='policy-input' className='policy-label'>بالضغط على التسجيل أنا أوافق على شروط الخدمة و سياسة الخصوصية  </label>
                 </div>
+                <span style={{color: 'red'}}>{errors.policy?.message}</span>
                 <button className='register-btn'>سجل الان </button>
               </form>
           </div>

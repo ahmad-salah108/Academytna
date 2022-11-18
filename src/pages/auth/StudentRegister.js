@@ -1,17 +1,23 @@
+import { useRef } from 'react'
 import {useEffect} from 'react'
+import { useForm } from 'react-hook-form'
 import { Link } from 'react-router-dom'
-import google from '../../images/Group.png'
-import facebook from '../../images/فيس  2.png'
 
 export default function StudentRegister() {
+  const {register, handleSubmit, formState: {errors}} = useForm();
+  const password = useRef(null);
+  const {ref, ...rest} = register('password', {required: 'كلمة المرور مطلوبة'});
 
-    useEffect(()=>{
-        window.scrollTo({
-          behavior:"smooth",
-          top:0
-        })
-      },[])
-    
+  const onSubmit = (data)=>{
+    console.log(data)
+  }
+  
+  useEffect(()=>{
+      window.scrollTo({
+        behavior:"smooth",
+        top:0
+      })
+    },[])
 
   return (
     <div className='student-register container'>
@@ -23,37 +29,33 @@ export default function StudentRegister() {
                 <Link to={"/register/teacher"} className="notActive">تسجيل كمعلم </Link>
             </div>
            <div className='register-process-wrapper'>
-              <div className='register-through'>
-                <button className='register-way-box'>
-                  <img src={google} alt="" className='image-way'/>
-                  <span className='name-way'>عن طريق جوجل </span>
-                </button>
-                <span className='or'>او</span>
-                <button className='register-way-box'>
-                  <img src={facebook} alt=""  className='image-way'/>
-                  <span className='name-way'>عن طريق الفيس </span>
-                </button>
-              </div>
-              <form className='register-form'>
+              <form onSubmit={handleSubmit(onSubmit)} className='register-form'>
                 <div className='form-input-wrapper'>
                   <label className='input-title'>البريد الاكتروني</label>
-                  <input type={"email"} className="input"/>
+                  <input type={"email"} {...register('email', {required: 'البريد الالكتروني مطلوب'})} className="input"/>
+                  <span style={{color: 'red'}}>{errors.email?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
-                  <label className='input-title'>الاسم واللقب</label>
-                  <input type={"email"} className="input"/>
+                  <label className='input-title'>الاسم</label>
+                  <input {...register('name', {required: 'الاسم مطلوب'})} className="input"/>
+                  <span style={{color: 'red'}}>{errors.name?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> كلمة المرور   </label>
-                  <input type={'password'} className="input"/>
+                  <input type={'password'} ref={e => {ref(e); password.current = e;}} {...rest}  className="input"/>
+                  <span style={{color: 'red'}}>{errors.password?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> تاكيد كلمة المرور  </label>
-                  <input type={'password'} className="input"/>
+                  <input type={'password'} {...register('confirmPass', {
+                    required: 'تاكيد كلمة المرور مطلوب',
+                    validate: v => v==password.current.value ? true : 'كلمة المرور غير مطابقة'
+                    })} className="input"/>
+                  <span style={{color: 'red'}}>{errors.confirmPass?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
-                  <label  className='input-title'>الجنس</label>
-                  <select className="input select">
+                  <label className='input-title'>الجنس</label>
+                  <select {...register('gender')} className="input select">
                     <optgroup label='اختيار الجنس' className='descripe-select'>
                       <option className='option'>ذكر</option>
                       <option className='option'>انثى</option>
@@ -61,8 +63,8 @@ export default function StudentRegister() {
                   </select>
                 </div>
                 <div className='form-input-wrapper'>
-                  <label  className='input-title'>المستوى التعليمي </label>
-                  <select className="input select">
+                  <label className='input-title'>المستوى التعليمي </label>
+                  <select {...register('level')} className="input select">
                     <optgroup label=' اختر المستوى ' className='descripe-select'>
                       <option className='option'>مستوي التعليم الابتدائي </option>
                       <option className='option'>مستوي التعليم المتوسط </option>
@@ -71,8 +73,8 @@ export default function StudentRegister() {
                   </select>
                 </div>
                 <div className='form-input-wrapper'>
-                  <label  className='input-title'> السنة الدراسية </label>
-                  <select className="input select">
+                  <label className='input-title'> السنة الدراسية </label>
+                  <select {...register('year')} className="input select">
                     <optgroup label='  اختر السنة الدراسية   ' className='descripe-select'>
                       <option className='option'>السنة الاولى</option>
                       <option className='option'> السنة الثانية </option>
@@ -80,22 +82,11 @@ export default function StudentRegister() {
                     </optgroup>
                   </select>
                 </div>
-                <div className='form-input-wrapper'>
-                  <label  className='input-title'> الشعبة </label>
-                  <select className="input select">
-                    <optgroup label='اختر  الشعبة  ' className='descripe-select'>
-                      <option className='option'> شعبة علوم تجريبية</option>
-                      <option className='option'> شعبة رياضيات </option>
-                      <option className='option'> شعبة تسيير واقتصاد </option>
-                      <option className='option'> شعبة تقني رياضي </option>
-                      <option className='option'> شعبة فلسفة ولغات اجنبية </option>
-                    </optgroup>
-                  </select>
-                </div>
                 <div className='policy-wrapper'>
-                  <input type={"checkbox"} className="input-radio" id='student-policy'/>
-                  <label className='policy-label' for="student-policy">بالضغط على التسجيل أنا أوافق على شروط الخدمة و سياسة الخصوصية  </label>
+                  <input type={"checkbox"} {...register('policy', {required: 'يجب الموافقة على شروط الخدمة وسياسة الخصوصية'})} className="input-radio" id='student-policy'/>
+                  <label className='policy-label' htmlFor="student-policy">بالضغط على التسجيل أنا أوافق على شروط الخدمة و سياسة الخصوصية  </label>
                 </div>
+                <span style={{color: 'red'}}>{errors.policy?.message}</span>
                 <button className='register-btn'>سجل الان </button>
               </form>
           </div>

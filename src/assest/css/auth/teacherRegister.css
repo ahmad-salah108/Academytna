@@ -179,3 +179,11 @@
     font: bold;
     margin: 40px auto 10px;
 }
+.teacher-register button[disabled], .student-register button[disabled]{
+    opacity: 0.5;
+}
+
+.teacher-register input, .student-register input,
+.teacher-register select, .student-register select{
+    box-shadow: 3px 3px 10px 0 rgba(0, 0, 0, 0.2);
+}
