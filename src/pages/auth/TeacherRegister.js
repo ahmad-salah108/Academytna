@@ -1,13 +1,41 @@
-import {useEffect, useRef} from 'react'
+import {useEffect, useRef, useState} from 'react'
 import '../../assest/css/auth/teacherRegister.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 
 export default function TeacherRegister() {
   const {register, handleSubmit, formState: {errors}, watch} = useForm();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const error = useRef(null);
 
   const onSubmit = (data)=>{
-    console.log(data)
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_API}/api/teacher/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+    .then(res => {
+      if(res.ok){
+        return res.json()
+       }else{
+        return Promise.reject(res.json())
+       }
+    })
+    .then(info => {
+      error.current.textContent = '';
+      navigate('/login/teacher')
+      console.log(info)
+      setLoading(false);
+    })
+    .catch(err => {
+      err.then(e => {error.current.textContent = e.message});
+      console.log(err)
+      setLoading(false)
+    });
   }
   
   useEffect(()=>{
@@ -40,8 +68,8 @@ export default function TeacherRegister() {
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'>رقم الجوال  </label>
-                  <input {...register('mobileNum', {required: 'رقم الجوال مطلوب'})} className="input"/>
-                  <span style={{color: 'red'}}>{errors.mobileNum?.message}</span>
+                  <input {...register('phone', {required: 'رقم الجوال مطلوب'})} className="input"/>
+                  <span style={{color: 'red'}}>{errors.phone?.message}</span>
                 </div>
                 <div className='form-input-wrapper'>
                   <label className='input-title'> كلمة المرور   </label>
@@ -60,8 +88,8 @@ export default function TeacherRegister() {
                   <label  className='input-title'>الجنس</label>
                   <select {...register('gender')} className="input select">
                     <optgroup label='اختيار الجنس' className='descripe-select'>
-                      <option className='option'>ذكر</option>
-                      <option className='option'>انثى</option>
+                      <option value={'male'} className='option'>ذكر</option>
+                      <option value={'female'} className='option'>انثى</option>
                     </optgroup>
                   </select>
                 </div>
@@ -70,7 +98,8 @@ export default function TeacherRegister() {
                   <label htmlFor='policy-input' className='policy-label'>بالضغط على التسجيل أنا أوافق على شروط الخدمة و سياسة الخصوصية  </label>
                 </div>
                 <span style={{color: 'red'}}>{errors.policy?.message}</span>
-                <button className='register-btn'>سجل الان </button>
+                <span ref={error} style={{ color: "red" }}></span>
+                <button style={{opacity: loading ? 0.5 : 1}} className='register-btn'>{loading ? 'جاري التسجيل...' : 'سجل الان'}</button>
               </form>
           </div>
         </div>

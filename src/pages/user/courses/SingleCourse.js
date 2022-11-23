@@ -7,125 +7,131 @@ import AccordinCourse from "../../../components/user/courses/AccordainCourse";
 import CourseBox from "../../../components/user/courses/CourseBox";
 import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
+import { useSelector } from "react-redux";
 
 export default function SingleCourse() {
-  const { courseId, courseType } = useParams();
-  const [course, setCourse] = useState({});
-  const [goals, setGoals] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const params = useParams();
+  const { currentUser } = useSelector((state) => state.user);
+  const [course, setCourse] = useState([]);
+  const [units, setUnits] = useState([]);
 
   useEffect(() => {
     window.scrollTo({
       behavior: "smooth",
       top: 0,
     });
-
-    axios
-      .get(
-        `https://pall.pal-lady.com/InfixLMS%20v5.0.0/api/get-course-details/${courseId}`
-      )
-      .then(function (response) {
-        setCourse([
-          {
-            title:
-              courseType == "arabic"
-                ? "اللغة العربية"
-                : courseType == "math"
-                ? "الرياضيات"
-                : courseType == "history"
-                ? "التاريخ"
-                : courseType == "economie"
-                ? "الإقتصاد"
-                : courseType == "etiquette"
-                ? "الاداب"
-                : courseType == "languages"
-                ? "اللغات الاجنبية"
-                : "",
-            info: response.data.data,
-          },
-        ]);
-        var strippedHtml = response.data.data.requirements.ar.replace(
-          /<[^>]+>/g,
-          ""
-        );
-        var result = strippedHtml.replace(/&nbsp;/g, " ");
-        setGoals(result);
-        setTimeout(() => {
-          document.querySelector(".singleCourse-desc").innerHTML =
-            response.data.data.about.ar;
-        }, 0);
-        setIsLoading(false);
+    currentUser &&
+      fetch(`${process.env.REACT_APP_API}/api/student/allowedCourses`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: currentUser.token,
+        },
       })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      });
-  }, [courseId, courseType]);
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return Promise.reject(res.json());
+          }
+        })
+        .then((info) => {
+          console.log(info);
+          setCourse(info.courses.filter((e) => e.id == params.courseId));
+        })
+        .catch((err) => {
+          console.log(err);
+          // err.then(e => {error.current.textContent = e.message});
+        });
+    currentUser &&
+      fetch(
+        `${process.env.REACT_APP_API}/api/course/fulldata/${params.courseId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: currentUser.token,
+          },
+        }
+      )
+        .then((res) => {
+          if (res.ok) {
+            return res.json();
+          } else {
+            return Promise.reject(res.json());
+          }
+        })
+        .then((info) => {
+          setUnits(info.course.units);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    setIsLoading(false);
+  }, []);
 
   return (
     <div className="container singleCourse">
-      {isLoading ? (
-        <ClipLoader
-          color={"#99DAE9"}
-          loading={isLoading}
-          cssOverride={{
-            display: "block",
-            borderWidth: "10px",
-            margin: '50vh auto'
-          }}
-          size={100}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
-      ) : (
-        course.length > 0 &&
-        course.map((e) => {
-          return (
-            <div key={e.info.id}>
-              <div className="singleCourse-content">
-                <div className="singleCourse-details">
-                  <h3 className="singleCourse-title">{e.title}</h3>
-                  <p className="singleCourse-desc"></p>
-                  <div className="goals">
-                    <h3 className="goals-title">اهداف الدوره </h3>
-                    <div className="goals-parts">
-                      {goals.split("،").map((box, index) => {
-                        return (
-                          <div className="goal" key={index + "z1"}>
-                            <HiBadgeCheck className="goal-icon" />
-                            <h3 className="goal-title">{box}</h3>
-                          </div>
-                        );
-                      })}
+      {currentUser ? (<>
+        {isLoading ? (
+          <ClipLoader
+            color={"#99DAE9"}
+            loading={isLoading}
+            cssOverride={{
+              display: "block",
+              borderWidth: "10px",
+              margin: "50vh auto",
+            }}
+            size={100}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+        ) : (
+          course?.map((e, i) => {
+            return (
+              <div key={i + "qw"}>
+                <div className="singleCourse-content">
+                  <div className="singleCourse-details">
+                    {/* <h3 className="singleCourse-title">{e.title}</h3>
+                  <p className="singleCourse-desc">{}</p> */}
+                    <div className="goals">
+                      <h3 className="goals-title">اهداف الدوره </h3>
+                      <div className="goals-parts">
+                        <div className="goal">
+                          {/* <HiBadgeCheck className="goal-icon" /> */}
+                          <p className="singleCourse-desc">{e.goals}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="study">
+                      <h3 className="study-title">منهاج الدراسه </h3>
+                      <div>
+                        {units?.map((unit, index) => {
+                          return (
+                            <AccordinCourse
+                              unit={unit.unit}
+                              // chapterId={box.id}
+                              // lessons={e.info.lessons}
+                              key={index + "k1m"}
+                            />
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                  <div className="study">
-                    <h3 className="study-title">منهاج الدراسه </h3>
-                    <div>
-                      {e.info.chapters?.map((box, index) => {
-                        return (
-                          <AccordinCourse
-                            chapter={box}
-                            chapterId={box.id}
-                            lessons={e.info.lessons}
-                            key={index + "k1m"}
-                          />
-                        );
-                      })}
-                    </div>
+                  <div>
+                    <CourseBox course={e} />
                   </div>
                 </div>
-                <div>
-                  <CourseBox course={e.info} />
+                <div className="singlCourse-link">
+                  <Link className="link">اشتراك</Link>
                 </div>
               </div>
-              <div className="singlCourse-link">
-                <Link className="link">اشتراك</Link>
-              </div>
-            </div>
-          );
-        })
-      )}
+            );
+          })
+        )}
+      </>) : (<h1 style={{marginBottom: '300px'}}>يرجى تسجيل الدخول للتمكن من مشاهدة الدورة</h1>)}
     </div>
   );
 }

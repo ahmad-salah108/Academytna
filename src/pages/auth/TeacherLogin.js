@@ -1,13 +1,46 @@
 import {useEffect} from 'react'
 import '../../assest/css/auth/techerLogin.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
+import { useRef } from 'react';
+import { useState } from 'react';
+import { useContext } from "react";
+import { userContext } from "../../UserContext";
 
 export default function TeacherLogin() {
   const {register, handleSubmit, formState: {errors}} = useForm();
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const error = useRef(null);
+  const {user, setUser} = useContext(userContext);
 
   const onSubmit = (data)=>{
-    console.log(data);
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_API}/api/student/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((res) => {
+        if(res.ok){
+          return res.json()
+         }else{
+          return Promise.reject(res.json())
+         }
+      })
+      .then((info) => {
+        console.log(info);
+        setUser(info);
+        localStorage.setItem('academy-user', info);
+        navigate('/');
+        setLoading(false);
+      })
+      .catch((err) => {
+        err.then(e => {error.current.textContent = e.message});
+        setLoading(false);
+      });
   }
 
   useEffect(()=>{
@@ -38,10 +71,11 @@ export default function TeacherLogin() {
                   <input type={'password'} {...register('password', {required: 'كلمة المرور مطلوبة'})} className="input"/>
                   <span style={{color: 'red'}}>{errors.password?.message}</span>
                 </div>
-                <Link className='forgot-password-link' to={"/forgot-password"}>
+                {/* <Link className='forgot-password-link' to={"/forgot-password"}>
                 هل نسيت كلمة المرور
-                </Link>
-                <button className='register-btn'> تسجيل الدخول  </button>
+                </Link> */}
+                <span ref={error} style={{ color: "red" }}></span>
+                <button style={{opacity: loading ? 0.5 : 1}} className='register-btn'>{loading ? 'جاري التسجيل...' : 'تسجيل الدخول'}</button>
               </form>
           </div>
         </div>
