@@ -11,7 +11,7 @@ export default function Course({ course }) {
     >
       <Link to={`${course.id}`}>
         <img
-          src={`https://schools.rescue-palestine.com/images/${course.image}`}
+          src={`${process.env.REACT_APP_API}/images/${course.image}`}
           alt="load"
           className="image"
         />

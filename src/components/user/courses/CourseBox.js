@@ -5,7 +5,7 @@ export default function CourseBox({course})
 {
     return(
         <div className='course-box'>
-            <img src={`https://schools.rescue-palestine.com/images/${course.image}`} alt="load.." className='image'/>
+            <img src={`${process.env.REACT_APP_API}/images/${course.image}`} alt="load.." className='image'/>
             <h3 className='course-box-title'>
                 {course.title}
             </h3>

@@ -1,16 +1,13 @@
 import { useState } from "react";
 import "../../../assest/css/user/courses/AccordinCourse.css";
 import { IoIosVideocam } from "react-icons/io";
-import { AiOutlineFilePdf } from "react-icons/ai";
+import { MdQuiz } from "react-icons/md";
 import { BiLockAlt } from "react-icons/bi";
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect } from "react";
-import { useParams } from "react-router";
-import { useSelector } from "react-redux";
+
 
 export default function AccordinCourse({ unit }) {
   const [show, setShow] = useState(false);
-
   return (
     <div className="course-unit">
       <div className="unit">
@@ -38,6 +35,22 @@ export default function AccordinCourse({ unit }) {
                     <div className="unit-content">
                       <IoIosVideocam className="unit-video" />
                       <a href={lesson.videoUrl} target='_blank' className="unit-text">{lesson.title}</a>
+                    </div>
+                    <BiLockAlt />
+                  </div>
+                );
+              })}
+              {unit.exams?.map((exam, index) => {
+                return (
+                  <div
+                    key={index + "m9"}
+                    className={`box-unit ${
+                      index % 2 === 0 ? "notColor" : "color"
+                    }`}
+                  >
+                    <div className="unit-content">
+                      <MdQuiz className="unit-video" />
+                      <a href={''} target='_blank' className="unit-text">{exam.title}</a>
                     </div>
                     <BiLockAlt />
                   </div>
