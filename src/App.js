@@ -23,6 +23,7 @@ import ShowSubjectsExam from "./pages/user/exams/ShowSubjectsExam";
 import ShowCategorySubjectsExam from "./pages/user/exams/ShowCategorySubjectsExam";
 import Questions from "./pages/user/exams/Questions";
 import SingleQuestionTrueOrrFalse from "./pages/user/exams/SingleQuestionTrueOrFalse";
+import MultiQuestionsInPage from './pages/user/exams/MultiQuestionsInPage'
 import SingleQuestionChoices from "./pages/user/exams/SingleQuestionChoices";
 import TeacherRegister from "./pages/auth/TeacherRegister";
 import StudentRegister from "./pages/auth/StudentRegister";
@@ -162,11 +163,12 @@ function App() {
               element={<ViewVideoLessonSingle />}
             />
             <Route path="exams" element={<ShowSubjectsExam />} />
-            {/* page for multi question in the same oage */}
+            {/* page for multi question in the same page */}
             {/* page for one true or false question */}
             {/* <Route path='exams/questions' element={<SingleQuestionTrueOrrFalse/>}/> */}
             {/* page for one multi choices question */}
             {/* <Route path='exams/questions' element={<SingleQuestionChoices/>}/> */}
+            <Route path="exams/:examId" element={<MultiQuestionsInPage/>}/>
             <Route
               path="exams/:examType"
               element={<ShowCategorySubjectsExam />}

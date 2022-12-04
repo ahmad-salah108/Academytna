@@ -1,6 +1,6 @@
 import '../../assest/css/goldMemberShip/notFound.css'
 import { Link } from 'react-router-dom';
-import notFoundImage from '../../images/لا يوجد 1.webp'
+import notFoundImage from '../../images/notfound1.webp'
 import { useEffect } from 'react';
 
 export default function MyCoursesNotFound()

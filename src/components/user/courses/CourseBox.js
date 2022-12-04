@@ -19,11 +19,11 @@ export default function CourseBox({course})
             </div>
             <div className='course-footer'>
                 <Link to={'#'} className='link'>اشترك</Link>
-                <label>
+                {/* <label>
                     <input type='checkbox' name='favorite' style={{display: 'none'}}/>
                     <BsFillHeartFill className='favorite'/>
                 </label>
-                <BsShare className='icon-share'/>
+                <BsShare className='icon-share'/> */}
             </div>
         </div>
     )

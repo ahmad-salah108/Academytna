@@ -4,10 +4,10 @@ import {
   Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend} from 'chart.js';
 import { Bar } from 'react-chartjs-2';
 import GoldChart from '../../components/goldMemberShip/GoldChart';
-import image1 from '../../images/goldStudent/Group 3605.png'
-import image2 from '../../images/goldStudent/Group 3606.png'
-import image3 from '../../images/goldStudent/Group 3647.png'
-import image4 from '../../images/goldStudent/تهنئة 1.png'
+import image1 from '../../images/goldStudent/Group3605.png'
+import image2 from '../../images/goldStudent/Group3606.png'
+import image3 from '../../images/goldStudent/Group3647.png'
+import image4 from '../../images/goldStudent/gonc.png'
 import {Link} from 'react-router-dom'
 
 ChartJS.register(

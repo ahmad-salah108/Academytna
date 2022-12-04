@@ -7,6 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { useContext } from "react";
 import { userContext } from "../../../UserContext";
 import { useSelector } from "react-redux";
+import {Grid} from '@mui/material'
 
 export default function Courses() {
   const [isLoading, setIsLoading] = useState(true);
@@ -51,7 +52,7 @@ export default function Courses() {
         </div> */}
         <div className="courses-content">
           <h3 className="courses-title">الدورات</h3>
-          <div>
+          <Grid container sx={{rowGap:"10px",columnGap:"10px"}}>
             {isLoading ? (
               <ClipLoader
                 color={"#99DAE9"}
@@ -69,11 +70,13 @@ export default function Courses() {
             ) : (
               courses?.map((course, index) => {
                 return (
-                  <Course key={course.id+'werw'} course={course} />
+                  <Grid key={course.id+'werw'} item xs={12} sm={5.5} lg={3.8}>
+                    <Course course={course} />
+                  </Grid>
                 );
               })
             )}
-          </div>
+          </Grid>
         </div>
       </div>) : (<h1 style={{marginBottom: '300px'}}>يرجى تسجيل الدخول للتمكن من مشاهدة الدورات</h1>)}
       

@@ -1,5 +1,5 @@
 import {BsCheckLg} from 'react-icons/bs'
-import image from '../../../images/اااا 1.png'
+import image from '../../../images/imglog.png'
 import '../../../assest/css/user/memberShips/silverBenefits.css'
 export default function SilverBenefits()
 {

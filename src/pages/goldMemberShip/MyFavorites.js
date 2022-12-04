@@ -1,5 +1,5 @@
 import "../../assest/css/goldMemberShip/myFavorites.css";
-import img1 from "../../images/منتدي 1.webp";
+import img1 from "../../images/fourm1.webp";
 import image2 from "../../images/psyoSession.webp";
 import Course from "../../components/user/courses/Course";
 import LessonBox from "../../components/user/videoLessons/LessonBox";

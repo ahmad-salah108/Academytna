@@ -1,5 +1,5 @@
 import image1 from '../../../images/students-watching-webinar-computer-studying-online_74855-15522 (1) 2.webp'
-import image2 from '../../../images/06 3.webp'
+import image2 from '../../../images/063.webp'
 import image3 from '../../../images/school-students-blackboard-girls-young-woman-holding-huge-pencils-raising-hands-flat-illustration_74855-11037 2.webp'
 import '../../../assest/css/user/home/students.css'
 export default function Students()

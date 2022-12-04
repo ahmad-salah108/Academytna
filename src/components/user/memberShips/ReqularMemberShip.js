@@ -1,4 +1,4 @@
-import image from '../../../images/العادية 1.png'
+import image from '../../../images/normal.png'
 import '../../../assest/css/user/memberShips/reqularMemberShip.css'
 import { Link } from 'react-router-dom'
 export default function RegularMembership()

@@ -1,6 +1,6 @@
 import "../../assest/css/goldMemberShip/myForums.css";
 import { Link } from "react-router-dom";
-import img1 from "../../images/منتدي 1.webp";
+import img1 from "../../images/fourm1.webp";
 import Forum from "../../components/user/forums/Forum";
 import { useEffect } from "react";
 

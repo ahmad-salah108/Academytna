@@ -29,7 +29,7 @@ export default function Course({ course }) {
           <Link to={"#"} className="link">
             اشترك
           </Link>
-          <div className="icons">
+          {/* <div className="icons">
             <label>
               <input
                 type="checkbox"
@@ -39,7 +39,7 @@ export default function Course({ course }) {
               <BsFillHeartFill className="favorite" />
             </label>
             <BsShare className="icon-share" />
-          </div>
+          </div> */}
         </div>
       </div>
     </motion.div>

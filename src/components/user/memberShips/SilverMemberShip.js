@@ -1,5 +1,5 @@
 import '../../../assest/css/user/memberShips/silverMemberShip.css'
-import image from '../../../images/فضية (1) 1.png'
+import image from '../../../images/selver.png'
 import { Link } from 'react-router-dom'
 export default function SilverMembership()
 {

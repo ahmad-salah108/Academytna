@@ -1,4 +1,4 @@
-import teacherImage from '../../images/teacher/معلم 1.png'
+import teacherImage from '../../images/teacher/teacher.png'
 import '../../assest/css/goldMemberShip/goldenDashboard.css'
 import {Link} from 'react-router-dom'
 import {VscListFlat} from 'react-icons/vsc'

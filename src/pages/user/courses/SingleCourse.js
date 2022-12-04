@@ -93,10 +93,9 @@ export default function SingleCourse() {
               <div key={i + "qw"}>
                 <div className="singleCourse-content">
                   <div className="singleCourse-details">
-                    {/* <h3 className="singleCourse-title">{e.title}</h3>
-                  <p className="singleCourse-desc">{}</p> */}
+                    <h3 className="singleCourse-title">{e.title}</h3>
                     <div className="goals">
-                      <h3 className="goals-title">اهداف الدوره </h3>
+                      <h3 className="goals-title">اهداف الدورة </h3>
                       <div className="goals-parts">
                         <div className="goal">
                           {/* <HiBadgeCheck className="goal-icon" /> */}
@@ -105,7 +104,7 @@ export default function SingleCourse() {
                       </div>
                     </div>
                     <div className="study">
-                      <h3 className="study-title">منهاج الدراسه </h3>
+                      <h3 className="study-title">منهاج الدراسة </h3>
                       <div>
                         {units?.map((unit, index) => {
                           return (
@@ -120,9 +119,9 @@ export default function SingleCourse() {
                       </div>
                     </div>
                   </div>
-                  <div>
+                  {/* <div>
                     <CourseBox course={e} />
-                  </div>
+                  </div> */}
                 </div>
                 <div className="singlCourse-link">
                   <Link className="link">اشتراك</Link>

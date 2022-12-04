@@ -50,7 +50,7 @@ export default function AccordinCourse({ unit }) {
                   >
                     <div className="unit-content">
                       <MdQuiz className="unit-video" />
-                      <a href={''} target='_blank' className="unit-text">{exam.title}</a>
+                      <a href={`/exams/${exam.id}`} target='_blank' className="unit-text" style={{color:"black"}}>{exam.title}</a>
                     </div>
                     <BiLockAlt />
                   </div>

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import '../../assest/css/goldMemberShip/goldAchievements.css'
-import image1 from '../../images/goldStudent/Group 3605.png'
-import image2 from '../../images/goldStudent/Group 3606.png'
+import image1 from '../../images/goldStudent/Group3605.png'
+import image2 from '../../images/goldStudent/Group3606.png'
 import {
 Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend} from 'chart.js';
 import { Bar } from 'react-chartjs-2';

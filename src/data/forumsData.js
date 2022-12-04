@@ -1,5 +1,5 @@
-import img1 from '../images/منتدي 1.webp'
-import img2 from '../images/منتدي 1.webp'
+import img1 from '../images/fourm1.webp'
+import img2 from '../images/fourm1.webp'
 export default [
     {
         type:'Arabic',

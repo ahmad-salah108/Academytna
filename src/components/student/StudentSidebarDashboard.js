@@ -1,4 +1,4 @@
-import teacherImage from '../../images/teacher/معلم 1.png'
+import teacherImage from '../../images/teacher/teacher.png'
 import '../../assest/css/student/dashBoardStudent.css'
 import {AiOutlineLaptop} from 'react-icons/ai'
 import {Link} from 'react-router-dom'

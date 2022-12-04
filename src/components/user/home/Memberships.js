@@ -1,4 +1,4 @@
-import image from '../../../images/06 1.webp'
+import image from '../../../images/061.webp'
 import '../../../assest/css/user/home/memberships.css'
 export default function Memberships()
 {

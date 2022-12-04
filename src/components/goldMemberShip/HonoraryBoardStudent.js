@@ -1,4 +1,4 @@
-import logo from '../../images/goldStudent/فضية 1.png'
+import logo from '../../images/goldStudent/gold.png'
 export default function HonoraryBoardStudent({image,student,summary})
 {
     return(

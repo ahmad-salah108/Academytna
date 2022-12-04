@@ -1,4 +1,4 @@
-import image from '../../../images/لا يوجد 1.webp'
+import image from '../../../images/notfound1.webp'
 import { Link } from 'react-router-dom'
 import '../../../assest/css/user/util/EmptyCategory.css'
 export default function EmptyCategory({type})

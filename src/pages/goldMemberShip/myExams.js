@@ -1,6 +1,6 @@
 import "../../assest/css/goldMemberShip/myExams.css";
 import { Link } from "react-router-dom";
-import img1 from "../../images/منتدي 1.webp";
+import img1 from "../../images/fourm1.webp";
 import ExamSubjectBox from "../../components/goldMemberShip/ExamSubjectBox";
 import { useEffect } from "react";
 
