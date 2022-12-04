@@ -1,11 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router";
 import "../../../assest/css/user/courses/singlecourse.css";
-import { HiBadgeCheck } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import AccordinCourse from "../../../components/user/courses/AccordainCourse";
-import CourseBox from "../../../components/user/courses/CourseBox";
-import axios from "axios";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useSelector } from "react-redux";
 
@@ -63,7 +60,7 @@ export default function SingleCourse() {
           }
         })
         .then((info) => {
-          setUnits(info.course.units);
+          setUnits(info.course.Units);
         })
         .catch((err) => {
           console.log(err);
@@ -98,7 +95,6 @@ export default function SingleCourse() {
                       <h3 className="goals-title">اهداف الدورة </h3>
                       <div className="goals-parts">
                         <div className="goal">
-                          {/* <HiBadgeCheck className="goal-icon" /> */}
                           <p className="singleCourse-desc">{e.goals}</p>
                         </div>
                       </div>
@@ -109,9 +105,7 @@ export default function SingleCourse() {
                         {units?.map((unit, index) => {
                           return (
                             <AccordinCourse
-                              unit={unit.unit}
-                              // chapterId={box.id}
-                              // lessons={e.info.lessons}
+                              unit={unit}
                               key={index + "k1m"}
                             />
                           );
